@@ -1,0 +1,17 @@
+Django
+djangorestframework
+django-environ
+django-extensions
+djangorestframework-simplejwt
+django-cors-headers
+requests
+django-debug-toolbar
+drf-yasg
+django-rest-swagger
+django-css-inline
+pillow
+mysqlclient
+django-crontab
+django-mailbox
+
+
