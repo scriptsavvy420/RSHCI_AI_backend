@@ -277,7 +277,7 @@ class UpdateUserAPI(APIView):
 
                 return Response({
                     "data": serializer.data,
-                    "msg": "更新しました。"
+                    "msg": "Has been updated."
                 }, status=200)
 
         except Exception as e:
