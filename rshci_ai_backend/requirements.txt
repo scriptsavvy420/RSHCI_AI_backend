@@ -13,5 +13,6 @@ pillow
 mysqlclient
 django-crontab
 django-mailbox
+django-dbbackup
 
 
