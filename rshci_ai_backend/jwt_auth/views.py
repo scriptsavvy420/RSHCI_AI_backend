@@ -200,12 +200,13 @@ class GetUsersAPI(APIView):
         
 
 class CreateUserAPI(APIView):
-    permission_classes = []
+    
     
     def post(self, request):
         
         try:
             errors, status, clean_data = validate_create_user(request)
+            print(clean_data)
             
             if status != 200:
                 return Response({"errors": errors}, status=status)
@@ -213,13 +214,12 @@ class CreateUserAPI(APIView):
             with transaction.atomic():
                 user_info = UserInfo.objects.create(
                     name = clean_data["name"],
-                    
                     phone=clean_data["phone"],
-                    role=Role.objects.get(id=clean_data["role"])
+                    
                 )
                 user = User.objects.create(
                     email=clean_data["email"],
-                    password='',
+                    password=clean_data["password"],
                     user_info=user_info,
                     permission="member",
                     is_active=False,

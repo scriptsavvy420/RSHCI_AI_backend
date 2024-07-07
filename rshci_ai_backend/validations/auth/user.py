@@ -10,7 +10,8 @@ def validate_create_user(request):
     name = data.get("name","")
     phone = data.get("phone", "")
     password = data.get("password","")
-    role = data.get("role", 0)
+    confirm_password = data.get("confirm_password","")
+    
     is_allowed = data.get("is_allowed", False)
 
     try:
@@ -28,18 +29,19 @@ def validate_create_user(request):
         if password == "":
             errors["password"] = "Please enter your password."
 
-        if Role.objects.filter(id=role).exists() == False:
-            errors["role"] = "This permission does not exist."
+        if password != confirm_password:
+            errors["confirm_password"] = "Incorrect confirm password"
 
-
+        print(errors)
         status = 422 if len(errors) > 0 else 200
         clean_data = {
             "email": email,
             "name":name,
             "phone": phone,
             "password":password,
-            "role": role,
-            "is_allowed": is_allowed
+            "confirm_password":confirm_password,
+            "is_allowed": is_allowed,
+            
         }
 
         return errors, status, clean_data
