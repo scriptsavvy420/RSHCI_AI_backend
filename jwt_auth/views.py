@@ -218,6 +218,7 @@ class CreateUserAPI(APIView):
                 )
                 user = User.objects.create(
                     email=clean_data["email"],
+                    username = clean_data["email"],
                     password=make_password(clean_data["password"]),
                     user_info=user_info,
                     permission="member",
