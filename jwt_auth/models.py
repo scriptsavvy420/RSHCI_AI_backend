@@ -58,7 +58,6 @@ class UserInfo(models.Model):
 class User(AbstractUser):
     user_id = models.CharField(max_length=50, null=True, blank=True)
     user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE, blank=True, null=True)
-
     
     email = models.EmailField(_('email address'), unique=True)
 
