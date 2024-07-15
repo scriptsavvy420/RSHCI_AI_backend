@@ -200,7 +200,6 @@ class GetUsersAPI(APIView):
 
 class CreateUserAPI(APIView):
     
-    
     def post(self, request):
         
         try:
@@ -216,9 +215,11 @@ class CreateUserAPI(APIView):
                     phone=clean_data["phone"],
                     
                 )
+                print(user_info)
+                print(True)
                 user = User.objects.create(
                     email=clean_data["email"],
-                    username = clean_data["email"],
+                    username = clean_data['email'],
                     password=make_password(clean_data["password"]),
                     user_info=user_info,
                     permission="member",

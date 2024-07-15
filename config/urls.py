@@ -20,11 +20,11 @@ from django.urls import re_path,include
 
 
 from jwt_auth.urls import urlpatterns as auth_urls
-from api.v0.admin_user.urls import urlpatterns as v0_admin_urls
+from api.v0.user.urls import urlpatterns as v0_user_urls
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^api/', include(auth_urls)),
-    re_path(r'^api/v0/', include(v0_admin_urls)),
+    re_path(r'^api/v0/', include(v0_user_urls)),
 ]
 

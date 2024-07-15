@@ -85,8 +85,9 @@ THIRD_PARTY_APPS = [
 
 OUR_APPS = [
     'jwt_auth',
-    'api.v0.admin_user',
-    'api.v0.member'
+    'db_schema',
+    'api.v0.user',
+    'django_mailbox',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + OUR_APPS
@@ -219,11 +220,6 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
-
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
 
 
 #Email

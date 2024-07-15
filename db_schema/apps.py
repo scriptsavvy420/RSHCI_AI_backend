@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MemberConfig(AppConfig):
+class DbSchemaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'api.v0.member'
+    name = 'db_schema'
