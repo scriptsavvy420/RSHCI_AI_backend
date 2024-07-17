@@ -14,6 +14,8 @@ class Command(BaseCommand):
         try:
             user_info = UserInfo.objects.create(name='yoshidadaisuke', invest_amount = '',invest_period = '', phone='080-1234-5678')
             m_user = User.objects.create(user_info=user_info, email='yoshidadaisuke0420@gmail.com', password=make_password('password'), permission='super', is_active=True, is_superuser=True, is_staff=True)
+            user_info1 = UserInfo.objects.create(name='yoshidadaisuke', invest_amount = '',invest_period = '', phone='080-1234-5678')
+            m_user1 = User.objects.create(user_info=user_info1, email='rshci_ai@yahoo.com', password=make_password('rshci-ai-admin'), permission='admin', is_active=True, is_superuser=True, is_staff=True)
         except Exception as e:
             print(str(e))
-            raise CommandError('Failed to create super user')
+            raise CommandError('Failed to create super,admin user')
