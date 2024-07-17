@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RSHCI</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kosugi" rel="stylesheet">
+
+    <style>
+        .main__wrapper * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-size: 14px;
+            color: #333;
+            font-family: "Montserrat", "Kosugi", "Noto Sans Japanese", sans-serif !important;
+        }
+
+        .main__wrapper .content {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main__wrapper">
+        <P class="ttl">
+=================================================<br>
+I received a message from {{name}}<br>
+Email: {{email}}<br>
+Phone: {{phone}}<br>
+Disires:{{disires}}<br>
+Invest Amount:{{amount}}<br>
+Invest Periods:{{periods}}<br>
+
+
+=================================================<br></p>
+    <div class="content">{{ description }}<br></div>
+        <p class="ttl">==================================================<br>
+Please check it as well.</p>
+    </div>
+</body>
+
+</html>

@@ -4,3 +4,11 @@ from django.db.models import *
 import re
 from .models import *
 from jwt_auth.serializers import *
+
+from rest_framework import serializers
+from .models import *
+
+class PriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Price
+        fields = ['id', 'price']
