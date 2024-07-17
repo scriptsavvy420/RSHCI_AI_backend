@@ -37,18 +37,18 @@ ON_SERVER = env("ON_SERVER", default=True)
 if ON_SERVER:
     DEBUG = False
     CORS_ORIGIN_REGEX_WHITELIST = env.list("CORS_ORIGIN_REGEX_WHITELIST", default=[])
-    ALLOWED_HOSTS = ["localhost", "api.rshci_ai.com", "stg.api.rshci_ai.com"]
+    ALLOWED_HOSTS = ["localhost", "rshci-ai.com", "stg.api.rshci-ai.com"]
     CORS_ALLOWED_ORIGINS = [
         "https://api.rshci_ai.com",
         "https://stg.api.rshci_ai.com",
-        "https://rshci_ai.com",
-        "https://stg.rshci_ai.com",
+        "https://rshci-ai.com",
+        "https://stg.rshci-ai.com",
     ]
     CSRF_TRUSTED_ORIGINS = [
-        "https://api.rshci_ai.com.com",
-        "https://stg.api.rshci_ai.com.com",
-        "https://rshci_ai.com.com",
-        "https://stg.rshci_ai.com.com",
+        "https://api.rshci-ai.com",
+        "https://stg.api.rshci-ai.com",
+        "https://rshci-ai.com",
+        "https://stg.rshci-ai.com",
     ]
 else:
     DEBUG = True
