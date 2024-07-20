@@ -67,8 +67,10 @@ class User(AbstractUser):
 
     PERMISSION_CHOICES = [
         ("customer", 'Customer'),
-        ("owner", 'Owner'),
+        ("admin", 'Admin'),
         ("super", 'Super'),
+        ("member", 'Member'),
+
     ]
 
     permission = models.CharField(max_length=50, choices=PERMISSION_CHOICES, default="customer")

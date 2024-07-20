@@ -48,8 +48,10 @@ class WalletAPI(APIView):
                 # Update the user_info with the created wallet
                 user_info = user.user_info
                 user_info.wallet_info = wallet
+                user.permission = "customer"
+                user.save()
                 user_info.save()
-            company_email = "liweichen798@gmail.com"
+            company_email = "RHCI AI LLC"
             wallet_serializer = WalletSerializer(wallet)
             
             mail_subject = f"Arrived message from {company_email}"
@@ -61,7 +63,7 @@ class WalletAPI(APIView):
                 },
             )
 
-            email_obj = EmailMessage(mail_subject, message, to=[company_email])
+            email_obj = EmailMessage(mail_subject, message, to=[user.email])
             email_obj.content_subtype = "html"
             email_obj.send()
 
