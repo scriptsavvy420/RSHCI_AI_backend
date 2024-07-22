@@ -17,7 +17,7 @@ class ContactMailAPI(APIView):
             phone = data.get("contactPhone")
             disires = data.get("contactDisires")
             description = data.get("contactText")
-            company_email = "rshci-ai@yahoo.com"
+            company_email = "rshciai@yahoo.com"
 
             mail_subject = f"Arrived message from {name}"
             message = render_to_string(
